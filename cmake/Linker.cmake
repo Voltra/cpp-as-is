@@ -1,4 +1,4 @@
-macro(cppAsIs_configure_linker project_name)
+macro(cpp_as_is_configure_linker project_name)
   include(CheckCXXCompilerFlag)
 
   set(USER_LINKER_OPTION

@@ -3,7 +3,7 @@
 # https://github.com/lefticus/cppbestpractices/blob/master/02-Use_the_Tools_Available.md
 
 function(
-  cppAsIs_set_project_warnings
+  cpp_as_is_set_project_warnings
   project_name
   WARNINGS_AS_ERRORS
   MSVC_WARNINGS

@@ -1,1 +1,1 @@
-add_subdirectory(cppAsIs)
+add_subdirectory(cpp_as_is)

@@ -16,7 +16,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Set the project name and language
 project(
-  cppAsIs
+  cpp_as_is
   VERSION 0.0.1
   DESCRIPTION ""
   HOMEPAGE_URL "https://github.com/Voltra/cpp-as-is"
@@ -26,13 +26,13 @@ include(cmake/PreventInSourceBuilds.cmake)
 include(ProjectOptions.cmake)
 
 
-cppAsIs_setup_options()
+cpp_as_is_setup_options()
 
-cppAsIs_global_options()
+cpp_as_is_global_options()
 include(Dependencies.cmake)
-cppAsIs_setup_dependencies()
+cpp_as_is_setup_dependencies()
 
-cppAsIs_local_options()
+cpp_as_is_local_options()
 
 # don't know if this should be set globally from here or not...
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
@@ -46,13 +46,13 @@ string(
             8
             GIT_SHORT_SHA)
 
-target_compile_features(cppAsIs_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
+target_compile_features(cpp_as_is_options INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
 
-add_library(cppAsIs::cppAsIs_options ALIAS cppAsIs_options)
-add_library(cppAsIs::cppAsIs_warnings ALIAS cppAsIs_warnings)
+add_library(cpp_as_is::cpp_as_is_options ALIAS cpp_as_is_options)
+add_library(cpp_as_is::cpp_as_is_warnings ALIAS cpp_as_is_warnings)
 
-#add_library(cppAsIs::cppAsIs_options INTERFACE IMPORTED)
-#add_library(cppAsIs::cppAsIs_warnings INTERFACE IMPORTED)
+#add_library(cpp_as_is::cpp_as_is_options INTERFACE IMPORTED)
+#add_library(cpp_as_is::cpp_as_is_warnings INTERFACE IMPORTED)
 
 # configure files based on CMake configuration options
 add_subdirectory(configured_files)
@@ -77,9 +77,9 @@ if(BUILD_TESTING)
 endif()
 
 
-if(cppAsIs_BUILD_FUZZ_TESTS)
+if(cpp_as_is_BUILD_FUZZ_TESTS)
   message(AUTHOR_WARNING "Building Fuzz Tests, using fuzzing sanitizer https://www.llvm.org/docs/LibFuzzer.html")
-  if (NOT cppAsIs_ENABLE_ADDRESS_SANITIZER AND NOT cppAsIs_ENABLE_THREAD_SANITIZER)
+  if (NOT cpp_as_is_ENABLE_ADDRESS_SANITIZER AND NOT cpp_as_is_ENABLE_THREAD_SANITIZER)
     message(WARNING "You need asan or tsan enabled for meaningful fuzz testing")
   endif()
   add_subdirectory(fuzz_test)
@@ -105,11 +105,11 @@ include(cmake/PackageProject.cmake)
 
 # Add other targets that you want installed here, by default we just package the one executable
 # we know we want to ship
-cppAsIs_package_project(
+cpp_as_is_package_project(
   TARGETS
-  cppAsIs_cppAsIs
-  cppAsIs_options
-  cppAsIs_warnings
+  cpp_as_is_cpp_as_is
+  cpp_as_is_options
+  cpp_as_is_warnings
   # FIXME: this does not work! CK
   # PRIVATE_DEPENDENCIES_CONFIGURED project_options project_warnings
 )

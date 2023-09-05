@@ -1,7 +1,7 @@
 include(CheckCXXCompilerFlag)
 
 macro(
-  cppAsIs_enable_hardening
+  cpp_as_is_enable_hardening
   target
   global
   ubsan_minimal_runtime)
