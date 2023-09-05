@@ -1,4 +1,4 @@
-add_library(cpp_as_is_cpp_as_is INTERFACE cpp_as_is.hpp)
+add_library(cpp_as_is_cpp_as_is INTERFACE cpp_as_is.hpp is/is.hpp is/traits.hpp is/impl/variant.hpp is/impl/impl.hpp is/impl/any.hpp)
 
 
 add_library(cpp_as_is::cpp_as_is ALIAS cpp_as_is_cpp_as_is)
