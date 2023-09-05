@@ -6,7 +6,7 @@
 
 ## About cmake_template
 
-This is a C++ Best Practices GitHub template for getting up and running with C++ quickly.
+This project is based on the [C++ Best Practices GitHub template](https://github.com/cpp-best-practices/cmake_template).
 
 By default (collectively known as `ENABLE_DEVELOPER_MODE`)
 
