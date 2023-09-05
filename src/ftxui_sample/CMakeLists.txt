@@ -2,8 +2,8 @@ add_executable(intro main.cpp)
 
 target_link_libraries(
   intro
-  PRIVATE myproject::myproject_options
-          myproject::myproject_warnings)
+  PRIVATE cpp_as_is::cpp_as_is_options
+          cpp_as_is::cpp_as_is_warnings)
 
 target_link_system_libraries(
   intro
