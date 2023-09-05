@@ -7,7 +7,7 @@
 namespace cpp_as_is {
 template<class... Variants> struct is_traits<std::variant<Variants...>>
 {
-  template<class T> constexpr static bool matches_type(const std::variant<Variants...> &variant)
+  template<class T> constexpr static inline bool matches_type(const std::variant<Variants...> &variant)
   {
     return std::holds_alternative<T>(variant);
   }

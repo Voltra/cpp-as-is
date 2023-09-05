@@ -7,7 +7,7 @@
 namespace cpp_as_is {
 template<> struct is_traits<std::any>
 {
-  template<class T> static bool matches_type(const std::any &variant) { return variant.type() == typeid(T); }
+  template<class T> static inline bool matches_type(const std::any &variant) { return variant.type() == typeid(T); }
 };
 }// namespace cpp_as_is
 
