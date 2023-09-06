@@ -42,10 +42,7 @@ template<class T> struct is_traits<std::experimental::future<T>>
 
   template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches<T>(const object_type &future) noexcept
-  {
-    return future.is_ready();
-  }
+  template<> static inline bool matches<T>(const object_type &future) noexcept { return future.is_ready(); }
 };
 
 template<class T> struct is_traits<std::experimental::shared_future<T>>
@@ -54,10 +51,7 @@ template<class T> struct is_traits<std::experimental::shared_future<T>>
 
   template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches<T>(const object_type &future) noexcept
-  {
-    return future.is_ready();
-  }
+  template<> static inline bool matches<T>(const object_type &future) noexcept { return future.is_ready(); }
 };
 }// namespace cpp_as_is
 #endif

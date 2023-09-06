@@ -1,4 +1,4 @@
-#include <fmt/format.h>
+#include <iostream>
 #include <iterator>
 #include <utility>
 
@@ -17,6 +17,6 @@
 // cppcheck-suppress unusedFunction symbolName=LLVMFuzzerTestOneInput
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size)
 {
-  fmt::print("Value sum: {}, len{}\n", sum_values(Data, Size), Size);
+  std::cout << "Value sum:" << sum_values(Data, Size) << ", len{}" << Size << '\n';
   return 0;
 }
