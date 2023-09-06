@@ -9,7 +9,7 @@ template<> struct is_traits<std::any>
 {
   using object_type = std::any;
 
-  template<class T> static inline bool matches_type(const object_type &variant) noexcept
+  template<class T> static inline bool matches(const object_type &variant) noexcept
   {
     return variant.type() == typeid(T);
   }
@@ -25,7 +25,7 @@ template<> struct is_traits<boost::any>
 {
   using object_type = boost::any;
 
-  template<class T> static inline bool matches_type(const object_type &variant) noexcept
+  template<class T> static inline bool matches(const object_type &variant) noexcept
   {
     return variant.type() == typeid(T);
   }

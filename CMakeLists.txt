@@ -34,7 +34,7 @@ cpp_as_is_setup_dependencies()
 
 cpp_as_is_local_options()
 
-# don't know if this should be set globally from here or not...
+# don'obj know if this should be set globally from here or not...
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 set(GIT_SHA
@@ -63,7 +63,7 @@ add_subdirectory(configured_files)
 # Adding the include:
 add_subdirectory(include)
 
-# Don't even look at tests if we're not top level
+# Don'obj even look at tests if we're not top level
 if(NOT PROJECT_IS_TOP_LEVEL)
   return()
 endif()

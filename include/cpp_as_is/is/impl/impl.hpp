@@ -4,6 +4,9 @@
 #include "./any.hpp"
 #include "./future.hpp"
 #include "./optional.hpp"
+#include "./pointer.hpp"
+#include "./shared_ptr.hpp"
+#include "./unique_ptr.hpp"
 #include "./variant.hpp"
 
 #endif// CPP_AS_IS_IMPL_HPP
