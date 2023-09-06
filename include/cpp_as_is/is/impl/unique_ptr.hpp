@@ -1,0 +1,24 @@
+#ifndef CPP_AS_IS_INCLUDE_CPP_AS_IS_IS_IMPL_UNIQUE_PTR_HPP
+#define CPP_AS_IS_INCLUDE_CPP_AS_IS_IS_IMPL_UNIQUE_PTR_HPP
+
+#include <memory>
+#include "../traits.hpp"
+
+namespace cpp_as_is {
+template<class T> struct is_traits<std::unique_ptr<T>>
+{
+  using object_type = std::unique_ptr<T>;
+
+  template<class> constexpr static inline bool matches(const object_type& ptr) noexcept;
+
+  template<> constexpr static inline bool matches<T>(const object_type& ptr) noexcept { return bool{ptr}; }
+
+  template<> constexpr static inline bool matches<std::nullptr_t>(const object_type& ptr) noexcept
+  {
+    return !(bool{ptr});
+  }
+};
+}// namespace cpp_as_is
+
+
+#endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_IS_IMPL_UNIQUE_PTR_HPP

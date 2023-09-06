@@ -9,7 +9,7 @@ template<class... Variants> struct is_traits<std::variant<Variants...>>
 {
   using object_type = std::variant<Variants...>;
 
-  template<class T> constexpr static inline bool matches_type(const object_type &variant) noexcept
+  template<class T> constexpr static inline bool matches(const object_type &variant) noexcept
   {
     return holds_alternative<T>(variant);
   }
@@ -24,9 +24,9 @@ template<class... Variants> struct is_traits<boost::variant<Variants...>>
 {
   using object_type = boost::variant<Variants...>;
 
-  template<class T> static inline bool matches_type(const object_type &variant) noexcept
+  template<class T> static inline bool matches(const object_type &variant) noexcept
   {
-    return variant.type() == typeid(T);
+    return variant.type() == typeid(Obj);
   }
 };
 }// namespace cpp_as_is
@@ -41,7 +41,7 @@ template<class... Variants> struct is_traits<boost::variant2::variant<Variants..
 {
   using object_type = boost::variant2::variant<Variants...>;
 
-  template<class T> static inline bool matches_type(const object_type &variant) noexcept
+  template<class T> static inline bool matches(const object_type &variant) noexcept
   {
     return holds_alternative<T>(variant);
   }

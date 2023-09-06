@@ -11,9 +11,9 @@ template<class T> struct is_traits<std::future<T>>
 {
   using object_type = std::future<T>;
 
-  template<class> static inline bool matches_type(const object_type &future) noexcept;
+  template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches_type<T>(const object_type &future) noexcept
+  template<> static inline bool matches<T>(const object_type &future) noexcept
   {
     return future.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
   }
@@ -23,9 +23,9 @@ template<class T> struct is_traits<std::shared_future<T>>
 {
   using object_type = std::shared_future<T>;
 
-  template<class> static inline bool matches_type(const object_type &future) noexcept;
+  template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches_type<T>(const object_type &future) noexcept
+  template<> static inline bool matches<T>(const object_type &future) noexcept
   {
     return future.wait_for(std::chrono::seconds(0)) == std::future_status::ready;
   }
@@ -40,9 +40,9 @@ template<class T> struct is_traits<std::experimental::future<T>>
 {
   using object_type = std::experimental::future<T>;
 
-  template<class> static inline bool matches_type(const object_type &future) noexcept;
+  template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches_type<T>(const object_type &future) noexcept
+  template<> static inline bool matches<T>(const object_type &future) noexcept
   {
     return future.is_ready();
   }
@@ -50,11 +50,11 @@ template<class T> struct is_traits<std::experimental::future<T>>
 
 template<class T> struct is_traits<std::experimental::shared_future<T>>
 {
-  using object_type = std::experimental::shared_future<T>;
+  using object_type = std::experimental::shared_future<Obj>;
 
-  template<class> static inline bool matches_type(const object_type &future) noexcept;
+  template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches_type<T>(const object_type &future) noexcept
+  template<> static inline bool matches<T>(const object_type &future) noexcept
   {
     return future.is_ready();
   }
@@ -71,9 +71,9 @@ template<class T> struct is_traits<boost::fibers::future<T>>
 {
   using object_type = boost::fibers::future<T>;
 
-  template<class> static inline bool matches_type(const object_type &future) noexcept;
+  template<class> static inline bool matches(const object_type &future) noexcept;
 
-  template<> static inline bool matches_type<T>(const object_type &future) noexcept
+  template<> static inline bool matches<T>(const object_type &future) noexcept
   {
     return future.wait_for(std::chrono::seconds(0)) == boost::fibers::future_status::ready;
   }
