@@ -12,9 +12,9 @@ template<class Obj>
 concept InspectableWithIs = requires(Obj obj) {
   typename cpp_as_is::is_traits<std::remove_cvref_t<Obj>>::object_type;
 
-//  {
-//    cpp_as_is::is_traits<std::remove_cvref_t<Obj>>::matches
-//  };
+  //  {
+  //    cpp_as_is::is_traits<std::remove_cvref_t<Obj>>::matches
+  //  };
 };
 }
 
