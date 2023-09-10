@@ -17,13 +17,6 @@ namespace cpp_as_is::ext {
 			return *ptr;
 		}
 	};
-
-	template <class T>
-	struct as_conversion_traits<T*, std::nullptr_t> {
-		using arg_type = T*;
-
-		static std::nullptr_t convert([[maybe_unused]] arg_type ptr) { return nullptr; }
-	};
 }
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_AS_IMPL_POINTER_HPP
