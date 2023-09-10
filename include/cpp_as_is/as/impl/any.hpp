@@ -25,7 +25,6 @@ namespace cpp_as_is::ext {
 	};
 }// namespace cpp_as_is::ext
 
-#if defined __has_include
 #if __has_include(<boost/any.hpp>)
 #include <boost/any.hpp>
 
@@ -49,7 +48,6 @@ namespace cpp_as_is::ext {
 		static const return_type &convert(const_arg_type variant) noexcept { return *any_cast<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<boost/any.hpp>)
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_AS_IMPL_ANY_HPP

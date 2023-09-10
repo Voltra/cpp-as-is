@@ -24,7 +24,6 @@ namespace cpp_as_is::ext {
 	};
 }// namespace cpp_as_is::ext
 
-#if defined __has_include
 #if __has_include(<boost/variant.hpp>)
 #include <boost/variant.hpp>
 
@@ -44,10 +43,8 @@ namespace cpp_as_is::ext {
 		constexpr static inline const return_type &convert(const arg_type &variant) noexcept { return get<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<boost/variant.hpp>)
 
-#if defined __has_include
 #if __has_include(<boost/variant2/variant.hpp>)
 #include <boost/variant2/variant.hpp>
 
@@ -68,7 +65,6 @@ namespace cpp_as_is::ext {
 		constexpr static inline const return_type &convert(const arg_type &variant) noexcept { return get<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<boost/variant2/variant.hpp>)
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_AS_IMPL_VARIANT_HPP

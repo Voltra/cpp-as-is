@@ -30,7 +30,6 @@ namespace cpp_as_is::ext {
 	};
 }// namespace cpp_as_is::ext
 
-#if defined __has_include
 #if __has_include(<experimental/future>)
 #include <experimental/future>
 
@@ -59,10 +58,8 @@ namespace cpp_as_is::ext {
 		static inline T &&convert(arg_type &&future) noexcept { return future.get(); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<experimental/future>)
 
-#if defined __has_include
 #if __has_include(<boost/fiber/future/future.hpp>)
 #include <boost/fiber/future/future.hpp>
 
@@ -77,8 +74,7 @@ template <class T> struct as_conversion_traits<boost::fibers::future<T>, T>
 
 	static inline T &&convert(arg_type &&future) noexcept { return future.get(); }
 };
-#endif
-#endif
+#endif// __has_include(<boost/fiber/future/future.hpp>)
 
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_AS_IMPL_FUTURE_HPP
