@@ -8,21 +8,24 @@
 #include <type_traits>
 
 namespace cpp_as_is {
-template<class Obj>
-concept InspectableWithIs = requires(Obj obj) {
-  typename cpp_as_is::is_traits<std::remove_cvref_t<Obj>>::object_type;
+template<class From, class To>
+concept InspectableWithIs = requires(From obj) {
+  typename cpp_as_is::ext::is_conversion_traits<std::remove_cvref_t<From>, To>::arg_type;
 
-  //  {
-  //    cpp_as_is::is_traits<std::remove_cvref_t<Obj>>::matches
-  //  };
+  {
+    cpp_as_is::ext::is_conversion_traits<std::remove_cvref_t<From>, To>::matches(obj)
+  } noexcept -> std::same_as<bool>;
 };
 }
 
-#define CPP_AS_IS_IS_CONCEPT cpp_as_is::InspectableWithIs
+#define CPP_AS_IS_IS_CONCEPT cpp_as_is::InspectableWithIs<T>
+
+#define CPP_AS_IS_REQUIRES(...) requires __VA_ARGS__
 
 #else
 
 #define CPP_AS_IS_IS_CONCEPT
+#define CPP_AS_IS_REQUIRES(...)
 
 #endif
 

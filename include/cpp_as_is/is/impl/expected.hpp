@@ -1,26 +1,28 @@
 #ifndef CPP_AS_IS_EXPErrCodeTED_HPP
 #define CPP_AS_IS_EXPErrCodeTED_HPP
 
+#include "../traits.hpp"
+
 #if defined __has_include
 #if __has_include(<expected>)
 #include <expected>
 
-template<class T, class E> struct is_traits<std::expected<T, E>>
+namespace cpp_as_is::ext {
+
+template<class T, class E> struct is_conversion_traits<std::expected<T, E>, T>
 {
-  using object_type = std::expected<T, E>;
+  using arg_type = std::expected<T, E>;
 
-  template<class> constexpr static inline bool matches(const object_type &expected) noexcept;
-
-  template<> constexpr static inline bool matches<T>(const object_type &expected) noexcept
-  {
-    return expected.has_value();
-  }
-
-  template<> constexpr static inline bool matches<std::unexpected<E>>(const object_type &expected) noexcept
-  {
-    return !expected.has_value();
-  }
+  constexpr static inline bool matches(const arg_type &expected) { return expected.has_value(); }
 };
+
+template<class T, class E> struct is_conversion_traits<std::expected<T, E>, std::unexpected<E>>
+{
+  using arg_type = std::expected<T, E>;
+
+  constexpr static inline bool matches(const arg_type &expected) { return !expected.has_value(); }
+};
+}// namespace cpp_as_is::ext
 #endif
 #endif
 
@@ -28,44 +30,48 @@ template<class T, class E> struct is_traits<std::expected<T, E>>
 #if __has_include(<boost/outcome.hpp>)
 #include <boost/outcome.hpp>
 
+namespace cpp_as_is::ext {
 template<class T, class ErrCode, class ExcPtr, class NoValuePolicy>
-struct is_traits<BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>>
+struct is_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>, T>
 {
-  using object_type = BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>;
+  using arg_type = BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>;
 
-  template<class> constexpr static inline bool matches(const object_type &) noexcept;
+  constexpr static inline bool matches(const arg_type &outcome) noexcept { return outcome.has_value(); }
+};
 
-  template<> constexpr static inline bool matches<T>(const object_type &outcome) noexcept
-  {
-    return outcome.has_value();
-  }
+template<class T, class ErrCode, class ExcPtr, class NoValuePolicy>
+struct is_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>, ErrCode>
+{
+  using arg_type = BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>;
 
-  template<> constexpr static inline bool matches<ErrCode>(const object_type &outcome) noexcept
-  {
-    return outcome.has_error();
-  }
+  constexpr static inline bool matches(const arg_type &outcome) noexcept { return outcome.has_error(); }
+};
 
-  template<> constexpr static inline bool matches<ExcPtr>(const object_type &outcome) noexcept
-  {
-    return outcome.has_exception();
-  }
+template<class T, class ErrCode, class ExcPtr, class NoValuePolicy>
+struct is_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>, ExcPtr>
+{
+  using arg_type = BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, ExcPtr, NoValuePolicy>;
+
+  constexpr static inline bool matches(const arg_type &outcome) noexcept { return outcome.has_exception(); }
 };
 
 
 template<class T, class ErrCode, class NoValuePolicy>
-struct is_traits<BOOST_OUTCOME_V2_NAMESPACE::result<Obj, ErrCode, NoValuePolicy>>
+struct is_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, NoValuePolicy>, T>
 {
-  using object_type = BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, ExcPtr, NoValuePolicy>;
+  using arg_type = BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, NoValuePolicy>;
 
-  template<class> constexpr static inline bool matches(const object_type &) noexcept;
-
-  template<> constexpr static inline bool matches<T>(const object_type &result) noexcept { return result.has_value(); }
-
-  template<> constexpr static inline bool matches<ErrCode>(const object_type &result) noexcept
-  {
-    return result.has_error();
-  }
+  constexpr static inline bool matches(const arg_type &outcome) noexcept { return outcome.has_value(); }
 };
+
+template<class T, class ErrCode, class NoValuePolicy>
+struct is_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, NoValuePolicy>, ErrCode>
+{
+  using arg_type = BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, NoValuePolicy>;
+
+  constexpr static inline bool matches(const arg_type &outcome) noexcept { return outcome.has_error(); }
+};
+}// namespace cpp_as_is::ext
 #endif
 #endif
 
