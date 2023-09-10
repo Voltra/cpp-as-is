@@ -9,7 +9,7 @@
 
 namespace cpp_as_is {
 	template <class From, class To>
-	concept IsConvertible = InspectableWithIs<From, To> && requires(From obj) {
+	concept IsConvertibleWithAs = InspectableWithIs<From, To> && requires(From obj) {
 		typename cpp_as_is::ext::as_conversion_traits<std::remove_cvref_t<From>, To>::arg_type;
 		typename cpp_as_is::ext::as_conversion_traits<std::remove_cvref_t<From>, To>::return_type;
 
@@ -19,7 +19,7 @@ namespace cpp_as_is {
 	};
 }
 
-#define CPP_AS_IS_AS_CONCEPT cpp_as_is::IsConvertible<T>
+#define CPP_AS_IS_AS_CONCEPT cpp_as_is::IsConvertibleWithAs<T>
 
 #else
 #endif
