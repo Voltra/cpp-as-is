@@ -28,7 +28,6 @@ namespace cpp_as_is::ext {
 	};
 }// namespace cpp_as_is::ext
 
-#if defined __has_include
 #if __has_include(<experimental/future>)
 #include <experimental/future>
 namespace cpp_as_is::ext {
@@ -46,10 +45,8 @@ namespace cpp_as_is::ext {
 		static inline bool matches(const arg_type &future) noexcept { return future.is_ready(); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<experimental/future>)
 
-#if defined __has_include
 #if __has_include(<boost/fiber/future/future.hpp>)
 #include <boost/fiber/future/future.hpp>
 namespace cpp_as_is::ext {
@@ -63,7 +60,6 @@ namespace cpp_as_is::ext {
 		}
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<boost/fiber/future/future.hpp>)
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_IS_IMPL_FUTURE_HPP

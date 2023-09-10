@@ -3,7 +3,6 @@
 
 #include "../traits.hpp"
 
-#if defined __has_include
 #if __has_include(<expected>)
 #include <expected>
 
@@ -23,10 +22,8 @@ namespace cpp_as_is::ext {
 		constexpr static inline bool matches(const arg_type &expected) { return !expected.has_value(); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<expected>)
 
-#if defined __has_include
 #if __has_include(<boost/outcome.hpp>)
 #include <boost/outcome.hpp>
 
@@ -72,7 +69,6 @@ namespace cpp_as_is::ext {
 		constexpr static inline bool matches(const arg_type &outcome) noexcept { return outcome.has_error(); }
 	};
 }// namespace cpp_as_is::ext
-#endif
-#endif
+#endif// __has_include(<boost/outcome.hpp>)
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_IS_IMPL_EXPECTED_HPP
