@@ -24,6 +24,8 @@ namespace cpp_as_is::ext {
 
 #if defined __has_include
 #if __has_include(<boost/optional.hpp>)
+#include <boost/optional.hpp>
+
 namespace cpp_as_is::ext {
 	template <class T> struct is_conversion_traits<boost::optional<T>, T>
 	{
