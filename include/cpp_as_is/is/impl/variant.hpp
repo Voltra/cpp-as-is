@@ -13,7 +13,7 @@ namespace cpp_as_is::ext {
 	struct is_conversion_traits<std::variant<Variants...>, T>
 	{
 		static_assert(cpp_as_is::details::contains_v<T, Variants...>,
-			"T expected to be one of the Variants, but wasn't");
+			"cpp_as_is::is<T>(std::variant<Variants...>): T expected to be one of the Variants, but wasn't");
 
 		using arg_type = std::variant<Variants...>;
 
@@ -30,7 +30,7 @@ namespace cpp_as_is::ext {
 	struct is_conversion_traits<boost::variant<Variants...>, T>
 	{
 		static_assert(cpp_as_is::details::contains_v<T, Variants...>,
-			"T expected to be one of the Variants, but wasn't");
+			"cpp_as_is::is<T>(boost::variant<Variants...>): T expected to be one of the Variants, but wasn't");
 
 		using arg_type = boost::variant<Variants...>;
 
@@ -50,7 +50,7 @@ namespace cpp_as_is::ext {
 	struct is_conversion_traits<boost::variant2::variant<Variants...>, T>
 	{
 		static_assert(cpp_as_is::details::contains_v<T, Variants...>,
-			"T expected to be one of the Variants, but wasn't");
+			"cpp_as_is::is<T>(boost::variant2::variant<Variants...>): T expected to be one of the Variants, but wasn't");
 
 		using arg_type = boost::variant2::variant<Variants...>;
 
