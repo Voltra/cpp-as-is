@@ -8,18 +8,20 @@ namespace cpp_as_is::ext {
 	template <class T> struct as_conversion_traits<std::any, T>
 	{
 		using arg_type = std::any;
+		using return_type = T;
 
-		static T convert(const arg_type &variant) noexcept { return std::any_cast<T>(variant); }
+		static return_type convert(const arg_type &variant) noexcept { return std::any_cast<T>(variant); }
 	};
 
 	template <class T> struct as_conversion_traits<std::any *, T>
 	{
 		using arg_type = std::any *;
 		using const_arg_type = const std::any *;
+		using return_type = T;
 
-		static T &convert(arg_type variant) noexcept { return *any_cast<T>(variant); }
+		static return_type &convert(arg_type variant) noexcept { return *any_cast<T>(variant); }
 
-		static const T &convert(const_arg_type variant) noexcept { return *any_cast<T>(variant); }
+		static const return_type &convert(const_arg_type variant) noexcept { return *any_cast<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
 
@@ -31,18 +33,20 @@ namespace cpp_as_is::ext {
 	template <class T> struct as_conversion_traits<boost::any, T>
 	{
 		using arg_type = boost::any;
+		using return_type = T;
 
-		static T convert(const arg_type &variant) noexcept { return any_cast<T>(variant); }
+		static return_type convert(const arg_type &variant) noexcept { return any_cast<T>(variant); }
 	};
 
 	template <class T> struct as_conversion_traits<boost::any *, T>
 	{
 		using arg_type = boost::any *;
 		using const_arg_type = const boost::any *;
+		using return_type = T;
 
 		static T &convert(arg_type variant) noexcept { return *any_cast<T>(variant); }
 
-		static const T &convert(const_arg_type variant) noexcept { return *any_cast<T>(variant); }
+		static const return_type &convert(const_arg_type variant) noexcept { return *any_cast<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
 #endif
