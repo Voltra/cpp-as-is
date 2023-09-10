@@ -7,20 +7,21 @@ namespace cpp_as_is::ext {
 	template <class T>
 	struct as_conversion_traits<T, T> {
 		using arg_type = T;
+		using return_type = T;
 
-		constexpr static inline T convert(arg_type arg) noexcept {
+		constexpr static inline return_type convert(arg_type arg) noexcept {
 			return arg;
 		}
 
-		constexpr static inline T& convert(arg_type& arg) noexcept {
+		constexpr static inline return_type& convert(arg_type& arg) noexcept {
 			return arg;
 		}
 
-		constexpr static inline const T& convert(const arg_type& arg) noexcept {
+		constexpr static inline const return_type& convert(const arg_type& arg) noexcept {
 			return arg;
 		}
 
-		constexpr static inline T&& convert(arg_type&& arg) noexcept {
+		constexpr static inline return_type&& convert(arg_type&& arg) noexcept {
 			return arg;
 		}
 	};

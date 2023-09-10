@@ -8,10 +8,11 @@ namespace cpp_as_is::ext {
 	template <class T> struct as_conversion_traits<std::shared_ptr<T>, T>
 	{
 		using arg_type = std::shared_ptr<T>;
+		using return_type = T;
 
-		static T &convert(arg_type &ptr) noexcept { return *ptr; }
+		static return_type &convert(arg_type &ptr) noexcept { return *ptr; }
 
-		static const T &convert(const arg_type &ptr) noexcept { return *ptr; }
+		static const return_type &convert(const arg_type &ptr) noexcept { return *ptr; }
 	};
 }// namespace cpp_as_is::ext
 

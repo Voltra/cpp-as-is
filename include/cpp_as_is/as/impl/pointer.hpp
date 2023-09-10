@@ -8,12 +8,13 @@ namespace cpp_as_is::ext {
 	struct as_conversion_traits<T*, T> {
 		using arg_type = T*;
 		using const_arg_type = const T*;
+		using return_type = T;
 
-		static T& convert(arg_type ptr) noexcept {
+		static return_type& convert(arg_type ptr) noexcept {
 			return *ptr;
 		}
 
-		static const T& convert(const_arg_type ptr) noexcept {
+		static const return_type& convert(const_arg_type ptr) noexcept {
 			return *ptr;
 		}
 	};

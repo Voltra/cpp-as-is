@@ -16,10 +16,11 @@ namespace cpp_as_is::ext {
 			"cpp_as_is::as<T>(std::variant<Variants...>): T expected to be one of the Variants, but wasn't");
 
 		using arg_type = std::variant<Variants...>;
+		using return_type = T;
 
-		constexpr static inline T &convert(arg_type &variant) noexcept { return get<T>(variant); }
-		constexpr static inline T &&convert(arg_type &&variant) noexcept { return get<T>(variant); }
-		constexpr static inline const T &convert(const arg_type &variant) noexcept { return get<T>(variant); }
+		constexpr static inline return_type &convert(arg_type &variant) noexcept { return get<T>(variant); }
+		constexpr static inline return_type &&convert(arg_type &&variant) noexcept { return get<T>(variant); }
+		constexpr static inline const return_type &convert(const arg_type &variant) noexcept { return get<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
 
@@ -36,10 +37,11 @@ namespace cpp_as_is::ext {
 			"cpp_as_is::as<T>(boost::variant<Variants...>): T expected to be one of the Variants, but wasn't");
 
 		using arg_type = boost::variant<Variants...>;
+		using return_type = T;
 
-		constexpr static inline T &convert(arg_type &variant) noexcept { return get<T>(variant); }
-		constexpr static inline T &&convert(arg_type &&variant) noexcept { return get<T>(variant); }
-		constexpr static inline const T &convert(const arg_type &variant) noexcept { return get<T>(variant); }
+		constexpr static inline return_type &convert(arg_type &variant) noexcept { return get<T>(variant); }
+		constexpr static inline return_type &&convert(arg_type &&variant) noexcept { return get<T>(variant); }
+		constexpr static inline const return_type &convert(const arg_type &variant) noexcept { return get<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
 #endif
@@ -59,10 +61,11 @@ namespace cpp_as_is::ext {
 			"wasn't");
 
 		using arg_type = boost::variant2::variant<Variants...>;
+		using return_type = T;
 
-		constexpr static inline T &convert(arg_type &variant) noexcept { return get<T>(variant); }
-		constexpr static inline T &&convert(arg_type &&variant) noexcept { return get<T>(variant); }
-		constexpr static inline const T &convert(const arg_type &variant) noexcept { return get<T>(variant); }
+		constexpr static inline return_type &convert(arg_type &variant) noexcept { return get<T>(variant); }
+		constexpr static inline return_type &&convert(arg_type &&variant) noexcept { return get<T>(variant); }
+		constexpr static inline const return_type &convert(const arg_type &variant) noexcept { return get<T>(variant); }
 	};
 }// namespace cpp_as_is::ext
 #endif
