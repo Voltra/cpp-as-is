@@ -4,20 +4,20 @@
 #include "../traits.hpp"
 #include <memory>
 
-namespace cpp_as_is {
-template<class T> struct is_traits<std::shared_ptr<T>>
+namespace cpp_as_is::ext {
+template<class T> struct is_conversion_traits<std::shared_ptr<T>, T>
 {
-  using object_type = std::shared_ptr<T>;
+  using arg_type = std::shared_ptr<T>;
 
-  template<class> constexpr static inline bool matches(const object_type &ptr) noexcept;
-
-  template<> constexpr static inline bool matches<T>(const object_type &ptr) noexcept { return bool{ ptr }; }
-
-  template<> constexpr static inline bool matches<std::nullptr_t>(const object_type &ptr) noexcept
-  {
-    return !(bool{ ptr });
-  }
+  constexpr static inline bool matches(const arg_type &ptr) noexcept { return static_cast<bool>(ptr); }
 };
-}// namespace cpp_as_is
+
+template<class T> struct is_conversion_traits<std::shared_ptr<T>, std::nullptr_t>
+{
+  using arg_type = std::shared_ptr<T>;
+
+  constexpr static inline bool matches(const arg_type &ptr) noexcept { return !static_cast<bool>(ptr); }
+};
+}// namespace cpp_as_is::ext
 
 #endif// CPP_AS_IS_INCLUDE_CPP_AS_IS_IS_IMPL_SHARED_PTR_HPP

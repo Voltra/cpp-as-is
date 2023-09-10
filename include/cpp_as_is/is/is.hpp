@@ -11,7 +11,7 @@ template<class T> using remove_cvref_t = std::remove_cv_t<std::remove_reference_
 
 template<class T> inline bool is(CPP_AS_IS_IS_CONCEPT auto const &value)
 {
-  return cpp_as_is::is_traits<remove_cvref_t<decltype(value)>>::template matches<T>(value);
+  return cpp_as_is::ext::is_conversion_traits<remove_cvref_t<decltype(value)>, T>::matches(value);
 }
 }// namespace cpp_as_is
 

@@ -4,33 +4,27 @@
 #include "../traits.hpp"
 #include <any>
 
-namespace cpp_as_is {
-template<> struct is_traits<std::any>
+namespace cpp_as_is::ext {
+template<class T> struct is_conversion_traits<std::any, T>
 {
-  using object_type = std::any;
+  using arg_type = std::any;
 
-  template<class T> static inline bool matches(const object_type &variant) noexcept
-  {
-    return variant.type() == typeid(T);
-  }
+  static inline bool matches(const arg_type &variant) noexcept { return variant.type() == typeid(T); }
 };
-}// namespace cpp_as_is
+}// namespace cpp_as_is::ext
 
 #if defined __has_include
 #if __has_include(<boost/any.hpp>)
 #include <boost/any.hpp>
 
-namespace cpp_as_is {
-template<> struct is_traits<boost::any>
+namespace cpp_as_is::ext {
+template<class T> struct is_conversion_traits<boost::any, T>
 {
-  using object_type = boost::any;
+  using arg_type = boost::any;
 
-  template<class T> static inline bool matches(const object_type &variant) noexcept
-  {
-    return variant.type() == typeid(T);
-  }
+  static inline bool matches(const arg_type &variant) noexcept { return variant.type() == typeid(T); }
 };
-}// namespace cpp_as_is
+}// namespace cpp_as_is::ext
 #endif
 #endif
 
