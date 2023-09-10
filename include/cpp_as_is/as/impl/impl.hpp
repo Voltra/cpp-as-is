@@ -2,6 +2,7 @@
 #define CPP_AS_IS_INCLUDE_CPP_AS_IS_AS_IMPL_IMPL_HPP
 
 #include "./any.hpp"
+#include "./expected.hpp"
 #include "./future.hpp"
 #include "./identity.hpp"
 #include "./optional.hpp"
