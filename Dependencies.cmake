@@ -1,7 +1,7 @@
 include(cmake/CPM.cmake)
 
 # Done as a function so that updates to variables like
-# CMAKE_CXX_FLAGS don'obj propagate out to other
+# CMAKE_CXX_FLAGS don't propagate out to other
 # targets
 function(cpp_as_is_setup_dependencies)
 
