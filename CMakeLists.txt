@@ -17,8 +17,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Set the project name and language
 project(
   cpp_as_is
-  VERSION 0.0.1
-  DESCRIPTION ""
+  VERSION 0.1.0
+  DESCRIPTION "A C++17 Library for generic type queries or conversions, based on Herb Sutter's talk at CPPCon 2021"
   HOMEPAGE_URL "https://github.com/Voltra/cpp-as-is"
   LANGUAGES CXX C)
 
@@ -34,7 +34,7 @@ cpp_as_is_setup_dependencies()
 
 cpp_as_is_local_options()
 
-# don'obj know if this should be set globally from here or not...
+# don't know if this should be set globally from here or not...
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 set(GIT_SHA
@@ -63,7 +63,7 @@ add_subdirectory(configured_files)
 # Adding the include:
 add_subdirectory(include)
 
-# Don'obj even look at tests if we're not top level
+# Don't even look at tests if we're not top level
 if(NOT PROJECT_IS_TOP_LEVEL)
   return()
 endif()
