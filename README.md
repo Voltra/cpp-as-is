@@ -54,9 +54,10 @@ Legend: **to** means both `is` and `as` are available, **is** means only `is` is
   * [`boost::fibers::future<T>`](https://www.boost.org/doc/libs/1_83_0/libs/fiber/doc/html/fiber/synchronization/futures/future.html) to `T`
 * [`std::optional<T>`](https://en.cppreference.com/w/cpp/utility/optional) to `T`
   * `std::optional<T>` is [`std::nullopt_t`](https://en.cppreference.com/w/cpp/utility/optional/nullopt)
+  * [`boost::optional<T>`](https://www.boost.org/doc/libs/1_83_0/libs/optional/doc/html/index.html#optional.introduction) to `T`
 * [`std::shared_ptr<T>`](https://en.cppreference.com/w/cpp/memory/shared_ptr) to `T`
 * [`std::unique_ptr<T>`](https://en.cppreference.com/w/cpp/memory/unique_ptr) to `T`
-* [`std::variants<Variants...>`](https://en.cppreference.com/w/cpp/utility/variant) to `T`
+* [`std::variant<Variants...>`](https://en.cppreference.com/w/cpp/utility/variant) to `T`
 
 ## Extendability
 
