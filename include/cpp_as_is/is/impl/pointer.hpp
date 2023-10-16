@@ -27,10 +27,10 @@ namespace cpp_as_is::ext {
 		using arg_type = T*;
 		using const_arg_type = const T*;
 
-		constexpr static bool castable = std::is_base_of_v<U, T> || std::derived_from<U, T>;
+		constexpr static bool can_cast = std::is_base_of_v<U, T> || std::is_base_of_v<T, U>;
 
 		constexpr static inline bool matches(const_arg_type ptr) noexcept {
-			return ptr != nullptr && castable;
+			return can_cast && ptr != nullptr;
 		}
 	};
 
@@ -40,10 +40,10 @@ namespace cpp_as_is::ext {
 		using arg_type = T*;
 		using const_arg_type = const T*;
 
-		constexpr static bool castable = std::is_base_of_v<U, T> || std::derived_from<U, T>;
+		constexpr static bool can_cast = std::is_base_of_v<U, T> || std::is_base_of_v<T, U>;
 
 		constexpr static inline bool matches(const_arg_type ptr) noexcept {
-			return ptr != nullptr && castable;
+			return can_cast && ptr != nullptr;
 		}
 	};
 }// namespace cpp_as_is::ext

@@ -89,7 +89,7 @@ namespace cpp_as_is::ext {
 	};
 
 	template <class T, class ErrCode, class NoValuePolicy>
-	struct as_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::outcome<T, ErrCode, NoValuePolicy>, T>
+	struct as_conversion_traits<BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, NoValuePolicy>, T>
 	{
 		using arg_type = BOOST_OUTCOME_V2_NAMESPACE::result<T, ErrCode, NoValuePolicy>;
 		using return_type = T;
